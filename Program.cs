@@ -2,6 +2,7 @@
 using QuikGraph;
 using QuikGraph.Algorithms;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 class Program
 {
@@ -26,6 +27,84 @@ class Program
         graph.AddVertex("UTA");
         graph.AddVertex("WAS");
 
+        //Add2024SessonData(graph);
+        Add2025SeasonData(graph);
+
+        // Find the longest simple cycle using backtracking
+        var longestCycle = new List<Edge<string>>();
+        var currentCycle = new List<Edge<string>>();
+        var visited = new HashSet<string>();
+
+        foreach (var vertex in graph.Vertices)
+        {
+            FindLongestCycle(vertex, vertex, visited, currentCycle, longestCycle, graph);
+        }
+
+        // Display the longest cycle found in order
+        if (longestCycle.Count == 0)
+        {
+            Console.WriteLine("No cycles found in the graph.");
+        }
+        else
+        {
+            Console.WriteLine("Longest cycle found:");
+            var vertexOrder = new List<string>();
+            foreach (var edge in longestCycle)
+            {
+                if (!vertexOrder.Contains(edge.Source))
+                {
+                    vertexOrder.Add(edge.Source);
+                }
+                vertexOrder.Add(edge.Target);
+            }
+
+            for (int i = 0; i < vertexOrder.Count; i++)
+            {
+                if (i < vertexOrder.Count - 1)
+                {
+                    Console.Write($"{vertexOrder[i]} -> ");
+                }
+                else
+                {
+                    Console.Write($"{vertexOrder[i]}");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    private static void GetMatchResults()
+    {
+        // https://american-soccer-analysis.github.io/itscalledsoccer/reference/
+        // https://app.americansocceranalysis.com/api/v1/__docs__/#/National%20Women's%20Soccer%20League%20(NWSL)/get_nwsl_games
+        // https://fbref.com/en/comps/182/schedule/NWSL-Scores-and-Fixtures
+        // https://fbref.com/en/comps/182/2015/schedule/2015-NWSL-Scores-and-Fixtures
+    }
+
+    private static void Add2025SeasonData(AdjacencyGraph<string, Edge<string>> graph)
+    {
+        // week 1
+        graph.AddEdge(new Edge<string>("ORL", "CHI"));
+        graph.AddEdge(new Edge<string>("WAS", "HOU"));
+        graph.AddEdge(new Edge<string>("KC", "POR"));
+
+        // Week 2
+        graph.AddEdge(new Edge<string>("SEA", "NC"));
+        graph.AddEdge(new Edge<string>("KC", "WAS"));
+        graph.AddEdge(new Edge<string>("BAY", "LOU"));
+        graph.AddEdge(new Edge<string>("SD", "UTA"));
+        graph.AddEdge(new Edge<string>("HOU", "CHI"));
+        graph.AddEdge(new Edge<string>("ORL", "NJY"));
+
+        // Week 3
+        graph.AddEdge(new Edge<string>("WAS", "BAY"));
+        graph.AddEdge(new Edge<string>("ORL", "SD"));
+        graph.AddEdge(new Edge<string>("KC", "UTA"));
+        graph.AddEdge(new Edge<string>("LOU", "CHI"));
+        graph.AddEdge(new Edge<string>("LA", "SEA"));
+    }
+    private static void Add2024SessonData(AdjacencyGraph<string, Edge<string>> graph)
+    {
         // Add some wins, mostly away from:
         // https://en.wikipedia.org/wiki/2024_National_Women%27s_Soccer_League_season
         graph.AddEdge(new Edge<string>("BAY", "CHI"));
@@ -95,49 +174,6 @@ class Program
         graph.AddEdge(new Edge<string>("NC", "KC"));
         graph.AddEdge(new Edge<string>("WAS", "KC"));
         graph.AddEdge(new Edge<string>("ORL", "KC"));
-
-
-        // Find the longest simple cycle using backtracking
-        var longestCycle = new List<Edge<string>>();
-        var currentCycle = new List<Edge<string>>();
-        var visited = new HashSet<string>();
-
-        foreach (var vertex in graph.Vertices)
-        {
-            FindLongestCycle(vertex, vertex, visited, currentCycle, longestCycle, graph);
-        }
-
-        // Display the longest cycle found in order
-        if (longestCycle.Count == 0)
-        {
-            Console.WriteLine("No cycles found in the graph.");
-        }
-        else
-        {
-            Console.WriteLine("Longest cycle found:");
-            var vertexOrder = new List<string>();
-            foreach (var edge in longestCycle)
-            {
-                if (!vertexOrder.Contains(edge.Source))
-                {
-                    vertexOrder.Add(edge.Source);
-                }
-                vertexOrder.Add(edge.Target);
-            }
-
-            for (int i = 0; i < vertexOrder.Count; i++)
-            {
-                if (i < vertexOrder.Count - 1)
-                {
-                    Console.Write($"{vertexOrder[i]} -> ");
-                }
-                else
-                {
-                    Console.Write($"{vertexOrder[i]}");
-                }
-            }
-            Console.WriteLine();
-        }
     }
 
     static void FindLongestCycle(
