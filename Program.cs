@@ -102,8 +102,18 @@ class Program
         graph.AddEdge(new Edge<string>("KC", "UTA"));
         graph.AddEdge(new Edge<string>("LOU", "CHI"));
         graph.AddEdge(new Edge<string>("LA", "SEA"));
+
+        // Week 4
+        graph.AddEdge(new Edge<string>("POR", "UTA"));
+        graph.AddEdge(new Edge<string>("LA", "HOU"));
+        graph.AddEdge(new Edge<string>("KC", "SD"));
+        graph.AddEdge(new Edge<string>("CHI", "BAY"));
+        graph.AddEdge(new Edge<string>("WAS", "LOU"));
+        graph.AddEdge(new Edge<string>("ORL", "SEA"));
+        graph.AddEdge(new Edge<string>("NJY", "NC"));
+
     }
-    private static void Add2024SessonData(AdjacencyGraph<string, Edge<string>> graph)
+    private static void Add2024SeasonData(AdjacencyGraph<string, Edge<string>> graph)
     {
         // Add some wins, mostly away from:
         // https://en.wikipedia.org/wiki/2024_National_Women%27s_Soccer_League_season
