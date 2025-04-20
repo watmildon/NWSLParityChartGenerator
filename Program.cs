@@ -83,6 +83,7 @@ class Program
 
     private static void Add2025SeasonData(AdjacencyGraph<string, Edge<string>> graph)
     {
+        // first team is the winner, second team is the loser. Draws are not included.
         // week 1
         graph.AddEdge(new Edge<string>("ORL", "CHI"));
         graph.AddEdge(new Edge<string>("WAS", "HOU"));
@@ -112,6 +113,14 @@ class Program
         graph.AddEdge(new Edge<string>("ORL", "SEA"));
         graph.AddEdge(new Edge<string>("NJY", "NC"));
 
+        // Week 5
+        graph.AddEdge(new Edge<string>("UTA", "CHI"));
+        graph.AddEdge(new Edge<string>("SEA", "POR"));
+        graph.AddEdge(new Edge<string>("NJY", "LA"));
+        graph.AddEdge(new Edge<string>("SD", "LOU"));
+        graph.AddEdge(new Edge<string>("WAS", "ORL"));
+        graph.AddEdge(new Edge<string>("BAY", "NC"));
+        graph.AddEdge(new Edge<string>("KC", "HOU"));
     }
     private static void Add2024SeasonData(AdjacencyGraph<string, Edge<string>> graph)
     {
