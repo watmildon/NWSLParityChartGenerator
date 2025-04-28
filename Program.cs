@@ -121,6 +121,15 @@ class Program
         graph.AddEdge(new Edge<string>("WAS", "ORL"));
         graph.AddEdge(new Edge<string>("BAY", "NC"));
         graph.AddEdge(new Edge<string>("KC", "HOU"));
+
+        // Week 6
+        graph.AddEdge(new Edge<string>("POR", "NJY"));
+        graph.AddEdge(new Edge<string>("ORL", "LA"));
+        graph.AddEdge(new Edge<string>("HOU", "UTA"));
+        graph.AddEdge(new Edge<string>("NJY", "WAS"));
+        graph.AddEdge(new Edge<string>("NC", "KC"));
+        graph.AddEdge(new Edge<string>("SD", "CHI"));
+        
     }
     private static void Add2024SeasonData(AdjacencyGraph<string, Edge<string>> graph)
     {
