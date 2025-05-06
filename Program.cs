@@ -58,6 +58,8 @@ class Program
                 vertexOrder.Add(edge.Target);
             }
 
+            Console.WriteLine($"Cycle found with length {vertexOrder.Count - 1}");
+
             for (int i = 0; i < vertexOrder.Count; i++)
             {
                 if (i < vertexOrder.Count - 1)
@@ -129,6 +131,14 @@ class Program
         graph.AddEdge(new Edge<string>("NJY", "WAS"));
         graph.AddEdge(new Edge<string>("NC", "KC"));
         graph.AddEdge(new Edge<string>("SD", "CHI"));
+
+        // Week 7
+        graph.AddEdge(new Edge<string>("LA", "WAS"));
+        graph.AddEdge(new Edge<string>("LOU", "HOU"));
+        graph.AddEdge(new Edge<string>("SEA", "KC"));
+        graph.AddEdge(new Edge<string>("NC", "UTA"));
+        graph.AddEdge(new Edge<string>("POR", "ORL"));
+        graph.AddEdge(new Edge<string>("SD", "BAY"));
         
     }
     private static void Add2024SeasonData(AdjacencyGraph<string, Edge<string>> graph)
